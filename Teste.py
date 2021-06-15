@@ -39,6 +39,12 @@ for file in filenames:
         os.system('go run ' + path + problema + '/' + file)
         print("\n\n")
 
+    if extencao == 'c':
+        print("C")
+        os.system('gcc -o ' + path + problema + '/' + 'main-' + extencao + ' ' + path + problema + '/' + file)
+        os.system(path + problema + '/' + nome_arquivo + '-' + extencao + ' && rm ' + path + problema + '/' + nome_arquivo + '-' + extencao)
+        print("\n\n")
+
     if extencao == 'cpp':
         print("C++\n")
         os.system('g++ -o ' + path + problema + '/' + 'main-' + extencao + ' ' + path + problema + '/' + file)
@@ -54,6 +60,11 @@ for file in filenames:
     if extencao == 'py':
         print("Python\n")
         os.system('python3 ' + path + problema + '/' + file)
+        print("\n\n")
+
+    if extencao == 'dart':
+        print("Dart\n")
+        os.system('dart ' + path + problema + '/' + file)
         print("\n\n")
 
 print("Teste finalizado!\n")
