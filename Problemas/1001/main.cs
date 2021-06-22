@@ -5,7 +5,7 @@ class ClassMain {
         int b = Convert.ToInt32(Console.ReadLine());
         int x = a + b;
 
-        string resposta = String.Concat("X = ", x, "\n");
+        string resposta = String.Concat("X = ", x);
 
         Console.WriteLine(resposta);
     }
