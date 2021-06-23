@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import sys, os
+import sys, os, argparse, re
+
 from os import walk
 
 
@@ -9,7 +10,46 @@ print('Informe o número do problema')
 problema = input('')
 
 
+args_parser = argparse.ArgumentParser(description='Escolhe a linguagem')
+
+args_parser.add_argument("--linguagem", metavar="linguagem", choices=['go', 'php', 'java', 'py', 'cs', 'c', 'cpp', 'hs', 'pas', 'ml', 'dart', 'clj', 'js', 'kt', 'rb', 'rs'], default="py")
+args = args_parser.parse_args()
+linguagem = args.linguagem
+
 path = './Problemas/'
+
+# Vamos tentar pegar os inputs.
+link = "https://www.urionlinejudge.com.br/repository/UOJ_" + str(problema) + ".html -O Problemas/" + problema + "/site.html"
+os.system('wget ' + link)
+
+f = open("Problemas/" + problema + "/site.html", "r")
+documento_site = f.read();
+
+remove_characters = ["    ","\t", "\n"]
+for character in remove_characters:
+    documento_site = documento_site.replace(character, "")
+
+teste = documento_site.split('<table>')
+
+inputs = []
+outputs = []
+for i in teste:
+    if '<!DOCTYPE html' in i:
+        continue
+    body = i.split('<tbody>')[1]
+
+    tds = body.split('<td class="division">')[1]
+    
+    pattern = r"\<p>(.*?)</p>"
+    inputs.append(re.findall(pattern, tds.split('</td>')[0]))
+    outputs.append(tds.split('</td>')[1].replace('<br/>', "\n").replace('<p>', '').replace('</p>','').replace('<td>', ''))
+
+# Vamos remover o site.html
+os.system("rm Problemas/" + problema + "/site.html")
+
+
+# Aqui ja temos todos os inputs e outputs do problema.
+# inputs and outputs
 
 # Pega todos os files.
 filenames = next(walk(path + problema), (None, None, []))[2]
@@ -18,6 +58,9 @@ for file in filenames:
 
     nome_arquivo = file.split('.')[0] or ''
     extencao = file.split('.')[1] or ''
+
+    if extencao != linguagem:
+        continue
 
     if extencao == 'rs':
         print("Rust\n")
