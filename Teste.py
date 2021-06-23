@@ -19,7 +19,7 @@ linguagem = args.linguagem
 path = './Problemas/'
 
 # Vamos tentar pegar os inputs.
-link = "https://www.urionlinejudge.com.br/repository/UOJ_" + str(problema) + ".html -O Problemas/" + problema + "/site.html"
+""" link = "https://www.urionlinejudge.com.br/repository/UOJ_" + str(problema) + ".html -O Problemas/" + problema + "/site.html"
 os.system('wget ' + link)
 
 f = open("Problemas/" + problema + "/site.html", "r")
@@ -45,7 +45,7 @@ for i in teste:
     outputs.append(tds.split('</td>')[1].replace('<br/>', "\n").replace('<p>', '').replace('</p>','').replace('<td>', ''))
 
 # Vamos remover o site.html
-os.system("rm Problemas/" + problema + "/site.html")
+os.system("rm Problemas/" + problema + "/site.html") """
 
 
 # Aqui ja temos todos os inputs e outputs do problema.
