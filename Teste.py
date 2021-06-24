@@ -12,7 +12,7 @@ problema = input('')
 
 args_parser = argparse.ArgumentParser(description='Escolhe a linguagem')
 
-args_parser.add_argument("--linguagem", metavar="linguagem", choices=['go', 'php', 'java', 'py', 'cs', 'c', 'cpp', 'hs', 'pas', 'ml', 'dart', 'clj', 'js', 'kt', 'rb', 'rs'], default="py")
+args_parser.add_argument("--linguagem", metavar="linguagem", choices=['go', 'php', 'java', 'py', 'cs', 'c', 'cpp', 'lua', 'hs', 'pas', 'ml', 'dart', 'clj', 'js', 'kt', 'rb', 'rs'], default="py")
 args = args_parser.parse_args()
 linguagem = args.linguagem
 
